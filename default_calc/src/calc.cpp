@@ -219,6 +219,9 @@ double unary(const double current, bool &rad_on, const Op op) {
   case Op::COS:
     return std::cos(angle_rad);
   case Op::TAN:
+    if (std::abs(std::cos(angle_rad)) < 1e-10) {
+      return cout_bad_argument("TAN");
+    }
     return std::tan(angle_rad);
   case Op::CTN:
     if (std::abs(std::sin(angle_rad)) < 1e-10) {
